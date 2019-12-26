@@ -85,18 +85,21 @@ EndFunc
 Func DeleteShadowCopyByID($ShadowID)
 	$objWMI = ObjGet('winmgmts:root\cimv2')
 	$objClass = $objWMI.ExecQuery('SELECT * FROM Win32_ShadowCopy WHERE ID="' & $ShadowID & '"')
-	
-	;delete shadow copy
-	For $objItem In $objClass
-		$objItem.Delete_
-	Next
-	
-	;check If shadow copy is deleted
-	$objClass = $objWMI.ExecQuery('SELECT * FROM Win32_ShadowCopy WHERE ID="' & $ShadowID & '"')
-	If $objItem .count = 0 Then
-		ConsoleWrite("True")
+	If $objClass.count > 0 Then
+		;delete shadow copy
+		For $objItem In $objClass
+			$objItem.Delete_
+		Next
+		
+		;check If shadow copy is deleted
+		$objClass = $objWMI.ExecQuery('SELECT * FROM Win32_ShadowCopy WHERE ID="' & $ShadowID & '"')
+		If $objClass.count = 0 Then
+			ConsoleWrite("DELETED")
+		else
+			ConsoleWrite("ERROR: Shadow Copy can not be deleted.")
+		endif
 	else
-		ConsoleWrite("ERROR: Shadow Copy can not be deleted.")
+		ConsoleWrite("ERROR: Shadow Copy ID does not exists.")
 	endif
 EndFunc
 

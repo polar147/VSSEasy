@@ -5,16 +5,17 @@ For Correct work use Windows Vista or newer
 
 This tool is for command line use only. The script use native Windows WMI to interact with volume shadow copy.
 
-#How to Use
+How to Use
+----------------
 
 VSSEasy [option] [parameters]
 
 OPTIONS:
 
-CreateShadowCopy:      Create an shadow copy
-DeleteShadowCopyByID:  Delete an shadow copy
+CreateShadowCopy:      Create an shadow copy.
+DeleteShadowCopyByID:  Delete an shadow copy.
 MountShadowCopy:       Mounts a shadow copy as a directory where the content is the disk root of the snapshot.
-UnmountShadowCopy:     Unmount an shadow copy
+UnmountShadowCopy:     Unmount an shadow copy.
 
 EXAMPLES:
 

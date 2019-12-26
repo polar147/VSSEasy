@@ -10,17 +10,17 @@ How to Use
 
 VSSEasy [option] [parameters]
 
-OPTIONS:
+**OPTIONS:**
 
-CreateShadowCopy:      Create an shadow copy.
+**CreateShadowCopy:**      Create an shadow copy.
 
-DeleteShadowCopyByID:  Delete an shadow copy.
+**DeleteShadowCopyByID:**  Delete an shadow copy.
 
-MountShadowCopy:       Mounts a shadow copy as a directory where the content is the disk root of the snapshot.
+**MountShadowCopy:**       Mounts a shadow copy as a directory where the content is the disk root of the snapshot.
 
-UnmountShadowCopy:     Unmount an shadow copy.
+**UnmountShadowCopy:**     Unmount an shadow copy.
 
-EXAMPLES:
+**EXAMPLES:**
 
 VSSEasy CreateShadowCopy C:\some\directory
 

@@ -1,5 +1,11 @@
 #NoTrayIcon
 #RequireAdmin
+#pragma compile(FileVersion, 1.1.0.0)
+#pragma compile(ProductVersion, 1.1.0.0)
+#pragma compile(FileDescription, Easy way to work with Volume Shadow Copy)
+#pragma compile(ProductName, VSS Easy)
+#pragma compile(CompanyName, 'Andrei Bernardo Simoni')
+#pragma compile(LegalCopyright, This software is licensed as MIT License)
 #include <AutoItConstants.au3>
 #include <Array.au3>
 #include <File.au3>
@@ -75,10 +81,14 @@ EndFunc
 Func UnmountShadowCopy($ShadowMountPathLink)
 	;delete junction
     If FileExists($ShadowMountPathLink) Then
-		DirRemove($ShadowMountPathLink)
-        ConsoleWrite("UNMOUNTED")
+		If IsJunction($ShadowMountPathLink) Then
+			DirRemove($ShadowMountPathLink)
+			ConsoleWrite("UNMOUNTED")
+		Else
+			ConsoleWrite("ERROR: Invalid Shadow Copy mount path.")
+		EndIf
     Else
-        ConsoleWrite("ERROR: Invalid Shadow Copy mount path.")
+        ConsoleWrite("ERROR: Invalid path.")
     EndIf
 EndFunc
 
@@ -143,6 +153,14 @@ Func StringGenerator($Size)
 	Return $str
 EndFunc
 
+Func IsJunction($Directory)
+    $attrib = DllCall("kernel32.dll", "dword", "GetFileAttributesW", "wstr", $Directory)
+    If $attrib[0] = 1040 Then
+		Return true
+	Else
+		Return false
+	Endif
+EndFunc
 
 Func Help()
 	ConsoleWrite(@CRLF &"VSSEasy [option] [parameters]" & @CRLF & @CRLF)
